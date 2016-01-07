@@ -12,6 +12,6 @@ class Query {
     public String myName;
     public String myFileName;
     public QueryResult myResult;
-
+    public int myLimit;
     public IResultValidator myValidator;
 }

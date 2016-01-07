@@ -14,14 +14,14 @@ import java.util.ArrayList;
  * Created by monoc_000 on 2016. 01. 07..
  */
 public class QueryProcess {
-    public void handleScripts(ArrayList<String> aFileList) throws SQLException {
+    public void handleScripts(ArrayList<String> aFileList, int aLimit) throws SQLException {
         ArrayList<Query> aQueryList = new ArrayList<Query>();
 
         for (String aFile : aFileList) {
             Query aQuery = new Query();
             aQuery.myFileName = aFile;
             aQuery.myName = new File(aFile).getName().replaceFirst("[.][^.]+$", "");
-
+            aQuery.myLimit = aLimit;
             aQuery.myValidator = ResultValidatorFactory.createResultValidator(aQuery.myName);
 
             aQuery.myResult = new QueryExecutor().getExecutedQueryResult(aQuery);
@@ -42,6 +42,7 @@ public class QueryProcess {
             for (ResultSet r : q.myResult.myResultList) {
                 ResultSetMetaData rsmd = r.getMetaData();
                 int columnsNumber = rsmd.getColumnCount();
+                int counter = 0;
                 while (r.next()) {
                     for (int i = 1; i <= columnsNumber; i++) {
                         if (i > 1) System.out.print(",  ");
@@ -49,6 +50,10 @@ public class QueryProcess {
                         System.out.print(columnValue + " " + rsmd.getColumnName(i));
                     }
                     System.out.println("");
+                    counter++;
+                    if (counter == q.myLimit)
+                        break;
+
                 }
             }
 
