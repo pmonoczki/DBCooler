@@ -3,11 +3,7 @@ package codecool.study.db.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-
-
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -23,49 +19,38 @@ public class DatabaseConnection {
     /**
      * Stores the DB connection.
      */
-    private Connection m_oConnection;
+    private Connection myConnection;
 
     /**
      * Stores the path of the config XML.
      */
-    private static String m_sConfigPath;
+    private static String myConfigPath;
 
     /**
      * The filename of the config XML.
      */
-    private static final String c_sCONFIG_FILENAME = "config.xml";
-
-    /**
-     * The identifier of the milestone type in the DB.
-     */
-    public static final String c_nUNIQUE_ID_UserManager;
+    private static final String CONFIG_FILENAME = "config.xml";
 
     static {
         // process the config XML and initialize static fields
         try {
 
             // finds the path of the config file
-            m_sConfigPath = DatabaseConnection.class.getClassLoader()
-                    .getResource(c_sCONFIG_FILENAME).getFile();
-            m_sConfigPath = m_sConfigPath.substring(1);
-            System.out.println(m_sConfigPath);
+            myConfigPath = DatabaseConnection.class.getClassLoader()
+                    .getResource(CONFIG_FILENAME).getFile();
+            myConfigPath = myConfigPath.substring(1);
+            System.out.println(myConfigPath);
             // the document object of config XML
             Document oConfigDocument = null;
 
             // parses the config file
             oConfigDocument = DocumentBuilderFactory.newInstance()
-                    .newDocumentBuilder().parse(m_sConfigPath);
+                    .newDocumentBuilder().parse(myConfigPath);
 
             oConfigDocument.normalize();
 
             Element oConfigRoot = oConfigDocument.getDocumentElement();
 
-            // initializes the unique IDs
-            Element oUniqueIDs = (Element) oConfigRoot.getElementsByTagName(
-                    "UniqueIDs").item(0);
-
-            c_nUNIQUE_ID_UserManager = (oUniqueIDs.getElementsByTagName(
-                    "UserManager").item(0).getChildNodes().item(0).getNodeValue());
         } catch (Exception p_eException) {
 			/*
 			 * throws an Error because throwing Exceptions are not allowed in
@@ -87,7 +72,7 @@ public class DatabaseConnection {
      * Private constructor ensures to use this class only in static way.
      */
     private DatabaseConnection(Connection p_oConnetcion) {
-        m_oConnection = p_oConnetcion;
+        myConnection = p_oConnetcion;
     }
 
     /**
@@ -100,7 +85,7 @@ public class DatabaseConnection {
 
         // parses the config file
         Document oConfigDocument = DocumentBuilderFactory.newInstance()
-                .newDocumentBuilder().parse(m_sConfigPath);
+                .newDocumentBuilder().parse(myConfigPath);
         oConfigDocument.normalize();
 
         Element oConfigRoot = oConfigDocument.getDocumentElement();
@@ -143,7 +128,7 @@ public class DatabaseConnection {
      */
     public static Connection getDbConnection() throws Exception {
 
-        return openDbConnection().m_oConnection;
+        return openDbConnection().myConnection;
     }
 
     /* (non-Javadoc)
@@ -159,9 +144,9 @@ public class DatabaseConnection {
     public void valueUnbound() {
 
         try {
-            m_oConnection.close();
-        } catch (SQLException p_eSQLE) {
-            p_eSQLE.printStackTrace();
+            myConnection.close();
+        } catch (SQLException anSQLE) {
+            anSQLE.printStackTrace();
         }
     }
 }

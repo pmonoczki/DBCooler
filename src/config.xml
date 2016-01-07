@@ -5,7 +5,4 @@
         <Username>root</Username>
         <Password>admin</Password>
     </DatabaseConnection>
-    <UniqueIDs>
-        <UserManager>false</UserManager>>
-    </UniqueIDs>
 </config>
