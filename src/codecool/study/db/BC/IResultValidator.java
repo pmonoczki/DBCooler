@@ -1,11 +1,13 @@
 package codecool.study.db.BC;
 
-import java.sql.ResultSet;
+import codecool.study.db.database.*;
 
 /**
  * Created by monoc_000 on 2016. 01. 07..
  */
 public interface IResultValidator {
 
-    public boolean isMatch(ResultSet aSet);
+    public void setViewName(String aName);
+    public String getViewName();
+    public boolean isMatch(Query aQuery) throws Exception;
 }

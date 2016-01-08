@@ -1,24 +1,66 @@
 package codecool.study.db.BC;
 
-import java.util.Dictionary;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  * Created by monoc_000 on 2016. 01. 07..
  */
-public class ResultValidatorFactory  {
+public class ResultValidatorFactory {
 
-    private static Map<String, String> myMap = new HashMap<String, String>();
+    static {
+        myMap = new HashMap<String, String>();
+        try {
+            setMapping();
+        } catch
+                (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-    public static IResultValidator createResultValidator(String aName){
+    private static Map<String, String> myMap;
 
-        return getValidatorNameByExercise(aName).isEmpty() ? new DefaultResultValidator() : null;
+    public static IResultValidator createResultValidator(String aName) {
+
+        return getValidatorNameByExercise(aName).isEmpty() ? new DefaultResultValidator() : new ValidatorBase();
 
     }
 
-    private static String getValidatorNameByExercise(String aName){
+    public static String getValidatorNameByExercise(String aName) {
+
         if (myMap.containsKey(aName)) return myMap.get(aName);
         return "";
+    }
+
+    private static void setMapping() throws Exception {
+        InputStream myConfig = ResultValidatorFactory.class.getClassLoader()
+                .getResourceAsStream("validator-mapping.xml");
+
+        Document oConfigDocument = DocumentBuilderFactory.newInstance()
+                .newDocumentBuilder().parse(myConfig);
+        oConfigDocument.normalize();
+
+        Element oConfigRoot = oConfigDocument.getDocumentElement();
+
+        for (int u = 0; u < oConfigRoot
+                .getElementsByTagName("validator").getLength(); u++)
+
+        {
+
+            Element cd = (Element) oConfigRoot
+                    .getElementsByTagName("validator").item(u);
+            String aValue = cd.getElementsByTagName("view").item(0)
+                    .getChildNodes().item(0).getNodeValue();
+            String aKey = cd.getElementsByTagName("exercise").item(0)
+                    .getChildNodes().item(0).getNodeValue();
+
+            myMap.put(aKey, aValue);
+
+        }
     }
 }

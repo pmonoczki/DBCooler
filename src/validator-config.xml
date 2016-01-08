@@ -1,0 +1,8 @@
+<config>
+    <DatabaseConnection>
+        <Driver>com.mysql.jdbc.Driver</Driver>
+        <URL>jdbc:mysql://localhost/northwind</URL>
+        <Username>root</Username>
+        <Password>admin</Password>
+    </DatabaseConnection>
+</config>

@@ -1,6 +1,6 @@
 <validators>
     <validator>
-        <name></name>
-        <exercise></exercise>
+        <view>VIEW</view>
+        <exercise>EX1</exercise>
     </validator>
 </validators>

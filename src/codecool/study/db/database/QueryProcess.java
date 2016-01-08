@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Created by monoc_000 on 2016. 01. 07..
  */
 public class QueryProcess {
-    public void handleScripts(ArrayList<String> aFileList, int aLimit) throws SQLException {
+    public void handleScripts(ArrayList<String> aFileList, int aLimit) throws Exception {
         ArrayList<Query> aQueryList = new ArrayList<Query>();
 
         for (String aFile : aFileList) {
@@ -22,16 +22,24 @@ public class QueryProcess {
             aQuery.myFileName = aFile;
             aQuery.myName = new File(aFile).getName().replaceFirst("[.][^.]+$", "");
             aQuery.myLimit = aLimit;
-            aQuery.myValidator = ResultValidatorFactory.createResultValidator(aQuery.myName);
+            aQuery.myValidator = ResultValidatorFactory.
+                    createResultValidator(
+                            aQuery.myName
+                    );
+            aQuery.myValidator.setViewName(
+                    ResultValidatorFactory.
+                            getValidatorNameByExercise(aQuery.myName)
+            );
 
-            aQuery.myResult = new QueryExecutor().getExecutedQueryResult(aQuery);
+            aQuery.myResult = new QueryExecutor().
+                    getExecutedQueryResult(aQuery);
             aQueryList.add(aQuery);
         }
         printQuery(aQueryList);
 
     }
 
-    private void printQuery(ArrayList<Query> aListOfQueries) throws SQLException {
+    private void printQuery(ArrayList<Query> aListOfQueries) throws Exception {
 
         for (Query q : aListOfQueries) {
 
@@ -59,9 +67,9 @@ public class QueryProcess {
 
             System.out.println(
                     "Result validity: " +
-                            String.valueOf(q.myValidator.isMatch(
-                                    q.myResult.myResultList.get(0)
-                            ))
+                            String.valueOf(
+                                    q.myValidator.isMatch(q)
+                            )
             );
         }
 

@@ -1,9 +1,11 @@
 package codecool.study.db.database;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -24,35 +26,38 @@ public class DatabaseConnection {
     /**
      * Stores the path of the config XML.
      */
-    private static String myConfigPath;
+    private static InputStream myConfig;
 
     /**
      * The filename of the config XML.
      */
     private static final String CONFIG_FILENAME = "config.xml";
 
+    private static final String VALIDATOR_CONFIG_FILENAME = "validator-config.xml";
+
     static {
         // process the config XML and initialize static fields
         try {
-
+            System.out.println(CONFIG_FILENAME);
             // finds the path of the config file
-            myConfigPath = DatabaseConnection.class.getClassLoader()
-                    .getResource(CONFIG_FILENAME).getFile();
-            myConfigPath = myConfigPath.substring(1);
-            System.out.println(myConfigPath);
+            myConfig = DatabaseConnection.class.getClassLoader()
+                    .getResourceAsStream(CONFIG_FILENAME);
+
+            //myConfig = myConfig.substring(1);
+            System.out.println(myConfig);
             // the document object of config XML
             Document oConfigDocument = null;
 
             // parses the config file
             oConfigDocument = DocumentBuilderFactory.newInstance()
-                    .newDocumentBuilder().parse(myConfigPath);
+                    .newDocumentBuilder().parse(myConfig);
 
             oConfigDocument.normalize();
 
             Element oConfigRoot = oConfigDocument.getDocumentElement();
 
         } catch (Exception p_eException) {
-			/*
+            /*
 			 * throws an Error because throwing Exceptions are not allowed in
 			 * static init blocks. The name of the thrown Exception with its
 			 * message can be read in the message of the Error.
@@ -80,12 +85,22 @@ public class DatabaseConnection {
      *
      * @throws Exception if an error occurs
      */
-    private static DatabaseConnection openDbConnection()
+    private static DatabaseConnection openDbConnection(boolean isValidatorConn)
             throws Exception {
+        if (isValidatorConn){
+            myConfig = DatabaseConnection.class.getClassLoader()
+                    .getResourceAsStream(
+                            VALIDATOR_CONFIG_FILENAME);
 
+        }
+        else{
+            myConfig = DatabaseConnection.class.getClassLoader()
+                    .getResourceAsStream(CONFIG_FILENAME);
+
+        }
         // parses the config file
         Document oConfigDocument = DocumentBuilderFactory.newInstance()
-                .newDocumentBuilder().parse(myConfigPath);
+                .newDocumentBuilder().parse(myConfig);
         oConfigDocument.normalize();
 
         Element oConfigRoot = oConfigDocument.getDocumentElement();
@@ -126,9 +141,9 @@ public class DatabaseConnection {
      * @return the DB connection.
      * @throws Exception if an error occurs.
      */
-    public static Connection getDbConnection() throws Exception {
+    public static Connection getDbConnection(boolean isValidatorConn) throws Exception {
+        return openDbConnection(isValidatorConn).myConnection;
 
-        return openDbConnection().myConnection;
     }
 
     /* (non-Javadoc)

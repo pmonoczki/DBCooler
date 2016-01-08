@@ -1,12 +1,5 @@
 package codecool.study.db.database;
 
-//**
-/* This class can be used to read sql files into an array of Strings, each
-* representing a single query terminated by ";"
-        * Comments are filtered out.
-        */
-
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

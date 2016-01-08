@@ -19,7 +19,7 @@ class QueryExecutor {
 
         try {
             Statement aST =
-                    DatabaseConnection.getDbConnection().createStatement();
+                    DatabaseConnection.getDbConnection(false).createStatement();
             for (String query : aQueries) {
 
                 aRSList.add(aST.executeQuery(query));
@@ -31,9 +31,10 @@ class QueryExecutor {
 
         } catch (Exception e) {
             // TODO: NEM JO A QUERY EZT KEZELNI KELL
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.out.println("Not runnable script");
         }
-
+        System.out.println("@@@@@@@@@@@@@@@@@");
         return null;
     }
 }

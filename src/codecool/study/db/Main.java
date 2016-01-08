@@ -15,6 +15,11 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
+        if (args.length == 1 ){
+            printHelp();
+            return;
+        }
+
         CLAParser p = new CLAParser();
         QueryProcess qp = new QueryProcess();
 
@@ -46,5 +51,14 @@ public class Main {
                 aFileList.add(fileEntry.getName());
             }
         }
+    }
+
+
+    private static void printHelp(){
+        System.out.println("Codecool Kft. All rights are reserved");
+        System.out.println("Usage of the tool");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
     }
 }

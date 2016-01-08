@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 /**
  * Created by monoc_000 on 2016. 01. 07..
  */
-class Query {
+public class Query {
 
     public String myName;
     public String myFileName;
