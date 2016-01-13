@@ -1,8 +1,6 @@
 package codecool.study.db.database;
 
-import javax.xml.crypto.Data;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -13,28 +11,32 @@ class QueryExecutor {
 
     public QueryResult getExecutedQueryResult(Query aQuery) {
 
-        ArrayList<String> aQueries = new SQLReader().createQueries(aQuery.myFileName);
-
-        ArrayList<ResultSet> aRSList = new ArrayList<ResultSet>();
-
+        aQuery.myQueryList = new SQLReader().createQueries(aQuery.myFileName);
+        ArrayList<ResultSet> aResultSetList = new ArrayList<ResultSet>();
+        int aScriptNum = 0;
         try {
-            Statement aST =
-                    DatabaseConnection.getDbConnection(false).createStatement();
-            for (String query : aQueries) {
+            Statement aQueryStatement =
+                    DatabaseConnection.
+                            getDbConnection(false).
+                            createStatement();
+            for (String query : aQuery.myQueryList) {
 
-                aRSList.add(aST.executeQuery(query));
+                aResultSetList.add(aQueryStatement.executeQuery(query));
             }
 
+            aScriptNum++;
+
             QueryResult aResult = new QueryResult();
-            aResult.myResultList = aRSList;
+            aResult.myResultList = aResultSetList;
             return aResult;
 
         } catch (Exception e) {
-            // TODO: NEM JO A QUERY EZT KEZELNI KELL
-            //e.printStackTrace();
+
             System.out.println("Not runnable script");
+            System.out.println("Error in file: " + aQuery.myFileName);
+            System.out.println("Error at script: " + aQuery.myQueryList.get(aScriptNum));
         }
-        System.out.println("@@@@@@@@@@@@@@@@@");
+
         return null;
     }
 }

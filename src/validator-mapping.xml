@@ -3,4 +3,8 @@
         <view>VIEW</view>
         <exercise>EX1</exercise>
     </validator>
+    <validator>
+        <view>Q2</view>
+        <exercise>test</exercise>
+    </validator>
 </validators>

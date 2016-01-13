@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        if (args.length == 1 ){
+        if (args.length == 0 ){
             printHelp();
             return;
         }
@@ -38,17 +38,19 @@ public class Main {
         }
 
         qp.handleScripts(aFileList, myLimit);
-        System.out.println("READY");
+        System.out.println("Program has been finished");
 
     }
 
-    // TODO: ONLY SQL!!!
     private static void setFilesForFolder(final File folder) {
-        for (final File fileEntry : folder.listFiles()) {
+        for (final File fileEntry : folder.listFiles( )) {
             if (fileEntry.isDirectory()) {
                 setFilesForFolder(fileEntry);
-            } else {
-                aFileList.add(fileEntry.getName());
+            }
+            else {
+                if (fileEntry.getName().endsWith(".sql")) {
+                    aFileList.add(fileEntry.getName());
+                }
             }
         }
     }

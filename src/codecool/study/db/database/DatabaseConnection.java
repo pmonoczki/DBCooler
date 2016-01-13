@@ -44,7 +44,7 @@ public class DatabaseConnection {
                     .getResourceAsStream(CONFIG_FILENAME);
 
             //myConfig = myConfig.substring(1);
-            System.out.println(myConfig);
+
             // the document object of config XML
             Document oConfigDocument = null;
 

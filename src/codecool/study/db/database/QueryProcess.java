@@ -1,12 +1,9 @@
 package codecool.study.db.database;
 
-
 import codecool.study.db.BC.ResultValidatorFactory;
-
 import java.io.File;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -44,8 +41,12 @@ public class QueryProcess {
         for (Query q : aListOfQueries) {
 
             System.out.println("Name: " + q.myName);
+            System.out.println("==========================");
             System.out.println("File: " + q.myFileName);
-            System.out.println("Result of execution: ");
+            System.out.println("==========================");
+            System.out.println("Result of execution (Limit " +
+                    String.valueOf(q.myLimit)+ ") : ");
+            System.out.println("==========================");
 
             for (ResultSet r : q.myResult.myResultList) {
                 ResultSetMetaData rsmd = r.getMetaData();
@@ -64,6 +65,7 @@ public class QueryProcess {
 
                 }
             }
+            System.out.println("==========================");
 
             System.out.println(
                     "Result validity: " +

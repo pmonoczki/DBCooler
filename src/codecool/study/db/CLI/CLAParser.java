@@ -23,7 +23,8 @@ public class CLAParser {
                             throw new IllegalArgumentException("Not a valid argument: " + args[i]);
                         // --opt
                         doubleOptsList.add(args[i].substring(2, args[i].length()));
-                    } else {
+                    }
+                    else {
                         if (args.length - 1 == i)
                             throw new IllegalArgumentException("Expected arg after: " + args[i]);
                         // -opt
