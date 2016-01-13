@@ -1,8 +1,8 @@
 <config>
     <DatabaseConnection>
         <Driver>com.mysql.jdbc.Driver</Driver>
-        <URL>jdbc:mysql://localhost/northwind</URL>
-        <Username>root</Username>
-        <Password>admin</Password>
+        <URL>jdbc:mysql://db4free.net/northwind_cc</URL>
+        <Username>codecool_msc</Username>
+        <Password>Ment0rs_MSC</Password>
     </DatabaseConnection>
 </config>
