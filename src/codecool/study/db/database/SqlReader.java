@@ -42,7 +42,8 @@ class SQLReader {
                 if (indexOfCommentSign != -1) {
                     if (queryLine.startsWith("--")) {
                         queryLine = new String("");
-                    } else
+                    }
+                    else
                         queryLine = new String(queryLine.substring(0, indexOfCommentSign - 1));
                 }
                 // ignore comments surrounded by /* */
@@ -50,7 +51,8 @@ class SQLReader {
                 if (indexOfCommentSign != -1) {
                     if (queryLine.startsWith("#")) {
                         queryLine = new String("");
-                    } else
+                    }
+                    else
                         queryLine = new String(queryLine.substring(0, indexOfCommentSign - 1));
 
                     sBuffer.append(queryLine + " ");
@@ -63,7 +65,8 @@ class SQLReader {
                     if (indexOfCommentSign != -1) {
                         if (queryLine.endsWith("*/")) {
                             queryLine = new String("");
-                        } else
+                        }
+                        else
                             queryLine = new String(queryLine.substring(indexOfCommentSign + 2, queryLine.length() - 1));
                     }
                 }

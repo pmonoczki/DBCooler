@@ -17,7 +17,7 @@ public class Main {
 
         if (args.length == 0 ){
             printHelp();
-            return;
+            return ;
         }
 
         CLAParser p = new CLAParser();
@@ -49,7 +49,7 @@ public class Main {
             }
             else {
                 if (fileEntry.getName().endsWith(".sql")) {
-                    aFileList.add(fileEntry.getName());
+                    aFileList.add(fileEntry.getPath());
                 }
             }
         }
