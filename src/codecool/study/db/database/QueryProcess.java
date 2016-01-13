@@ -1,6 +1,7 @@
 package codecool.study.db.database;
 
 import codecool.study.db.BC.ResultValidatorFactory;
+
 import java.io.File;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -45,7 +46,7 @@ public class QueryProcess {
             System.out.println("File: " + q.myFileName);
             System.out.println("==========================");
             System.out.println("Result of execution (Limit " +
-                    String.valueOf(q.myLimit)+ ") : ");
+                    String.valueOf(q.myLimit) + ") : ");
             System.out.println("==========================");
 
             for (ResultSet r : q.myResult.myResultList) {
@@ -65,14 +66,19 @@ public class QueryProcess {
 
                 }
             }
-            System.out.println("==========================");
 
-            System.out.println(
-                    "Result validity: " +
-                            String.valueOf(
-                                    q.myValidator.isMatch(q)
-                            )
-            );
+            System.out.println("==========================");
+            if (q.myQueryList.size() != 0) {
+                System.out.println(
+                        "Result validity: " +
+                                String.valueOf(
+                                        q.myValidator.isMatch(q)
+                                )
+                );
+            }
+            else{
+                System.out.println("No script to run in file");
+            }
         }
 
     }

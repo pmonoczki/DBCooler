@@ -33,7 +33,7 @@ public class ResultValidatorFactory {
 
     public static String getValidatorNameByExercise(String aName) {
 
-        if (myMap.containsKey(aName)) return myMap.get(aName);
+        if (myMap.containsKey(aName)) return myMap.get(aName.toLowerCase());
         return "";
     }
 
@@ -59,8 +59,7 @@ public class ResultValidatorFactory {
             String aKey = cd.getElementsByTagName("exercise").item(0)
                     .getChildNodes().item(0).getNodeValue();
 
-            myMap.put(aKey, aValue);
-
+            myMap.put(aKey.toLowerCase(), aValue);
         }
     }
 }
