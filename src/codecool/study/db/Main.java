@@ -2,7 +2,6 @@ package codecool.study.db;
 
 import codecool.study.db.CLI.CLAParser;
 import codecool.study.db.CLI.Option;
-import codecool.study.db.database.DatabaseConnection;
 import codecool.study.db.database.*;
 
 import java.io.File;
@@ -21,7 +20,7 @@ public class Main {
         }
 
         CLAParser p = new CLAParser();
-        QueryProcess qp = new QueryProcess();
+        QueryProcessor qp = new QueryProcessor();
 
         for(Option o: p.Parse(args)){
 

@@ -49,7 +49,7 @@ class SQLReader {
                 // ignore comments surrounded by /* */
                 indexOfCommentSign = queryLine.indexOf("/*");
                 if (indexOfCommentSign != -1) {
-                    if (queryLine.startsWith("#")) {
+                    if (queryLine.startsWith("/*")) {
                         queryLine = new String("");
                     }
                     else

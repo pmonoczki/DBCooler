@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by monoc_000 on 2016. 01. 07..
  */
-public class QueryProcess {
+public class QueryProcessor {
     public void handleScripts(ArrayList<String> aFileList, int aLimit) throws Exception {
         ArrayList<Query> aQueryList = new ArrayList<Query>();
 
@@ -39,8 +39,11 @@ public class QueryProcess {
 
     private void printQuery(ArrayList<Query> aListOfQueries) throws Exception {
 
-        for (Query q : aListOfQueries) {
 
+        for (Query q : aListOfQueries) {
+            if (q.myResult == null){
+                continue;
+            }
             System.out.println("Name: " + q.myName);
             System.out.println("==========================");
             System.out.println("File: " + q.myFileName);
