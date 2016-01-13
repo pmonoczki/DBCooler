@@ -1,10 +1,34 @@
 <validators>
     <validator>
-        <view>VIEW</view>
-        <exercise>EX1</exercise>
+        <view>CheapestProductByCategoryOnTheMarket</view>
+        <exercise>query1</exercise>
     </validator>
     <validator>
-        <view>Q2</view>
-        <exercise>test</exercise>
+        <view>CustomerAndSuppliersByCity</view>
+        <exercise>query2</exercise>
+    </validator>
+    <validator>
+        <view>ExpensiveProducts</view>
+        <exercise>query3</exercise>
+    </validator>
+    <validator>
+        <view>Invoices</view>
+        <exercise>query4</exercise>
+    </validator>
+    <validator>
+        <view>OrderDetailsProductAndTotal</view>
+        <exercise>query5</exercise>
+    </validator>
+    <validator>
+        <view>OrderTotals</view>
+        <exercise>query6</exercise>
+    </validator>
+    <validator>
+        <view>ProductsOnTheMarket</view>
+        <exercise>query7</exercise>
+    </validator>
+    <validator>
+        <view>YearlyProductSales</view>
+        <exercise>query8</exercise>
     </validator>
 </validators>

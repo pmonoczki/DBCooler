@@ -58,14 +58,18 @@ public class Main {
 
     private static void printHelp(){
         System.out.println("Codecool Kft. All rights are reserved");
-        System.out.println("This tool is validates complex queries you are writing");
+        System.out.println("This tool is validates complex queries you are writing.");
         System.out.println("The name of the scriptfile is defined.");
         System.out.println("The connection can be configured.");
         System.out.println("Precondition is the NOERTHWIND DB schema is already exist.");
-        System.out.println("Usage of the tool");
-        System.out.println("java -jar DBCooler.jar [flag] [option]");
-        System.out.println("-f filepath");
-        System.out.println("-d folderpath");
+        System.out.println("Usage of the tool:");
+        System.out.println();
+        System.out.println("\tjava -jar DBCooler.jar [flag] [option]");
+        System.out.println();
+        System.out.println("Available attributes:");
+        System.out.println("\t-f absolute_filepath");
+        System.out.println("\t-d absolute_folderpath");
+        System.out.println();
         System.out.println("Without argument the help will be displayed.");
     }
 }

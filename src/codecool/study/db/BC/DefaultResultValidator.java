@@ -10,10 +10,6 @@ class DefaultResultValidator implements IResultValidator {
 
     private String myViewName = "";
 
-    public DefaultResultValidator(){
-        System.out.println("The exercise name is not valid. Please check your script name.");
-    }
-
     @Override
     public void setViewName(String aName) {
         this.myViewName = aName;
@@ -26,6 +22,7 @@ class DefaultResultValidator implements IResultValidator {
 
     @Override
     public boolean isMatch(Query aQuery) {
+        System.out.println("The exercise name is not valid. Please check your script name.");
         return false;
     }
 }
