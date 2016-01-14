@@ -1,6 +1,6 @@
 <validators>
     <validator>
-        <view>CheapestProductByCategoryOnTheMarket</view>
+        <view>OrderDetailsProductAndTotal</view>
         <exercise>query1</exercise>
     </validator>
     <validator>
@@ -8,19 +8,19 @@
         <exercise>query2</exercise>
     </validator>
     <validator>
-        <view>ExpensiveProducts</view>
+        <view>Invoices</view>
         <exercise>query3</exercise>
     </validator>
     <validator>
-        <view>Invoices</view>
+        <view>OrderTotals</view>
         <exercise>query4</exercise>
     </validator>
     <validator>
-        <view>OrderDetailsProductAndTotal</view>
+        <view>YearlyProductSales</view>
         <exercise>query5</exercise>
     </validator>
     <validator>
-        <view>OrderTotals</view>
+        <view>ExpensiveProducts</view>
         <exercise>query6</exercise>
     </validator>
     <validator>
@@ -28,7 +28,7 @@
         <exercise>query7</exercise>
     </validator>
     <validator>
-        <view>YearlyProductSales</view>
+        <view>CheapestProductByCategoryOnTheMarket</view>
         <exercise>query8</exercise>
     </validator>
 </validators>
