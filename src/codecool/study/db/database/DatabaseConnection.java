@@ -34,44 +34,7 @@ public class DatabaseConnection {
     private static final String CONFIG_FILENAME = "config.xml";
 
     private static final String VALIDATOR_CONFIG_FILENAME = "validator-config.xml";
-
-    static {
-        // process the config XML and initialize static fields
-        try {
-            System.out.println(CONFIG_FILENAME);
-            // finds the path of the config file
-            myConfig = DatabaseConnection.class.getClassLoader()
-                    .getResourceAsStream(CONFIG_FILENAME);
-
-            //myConfig = myConfig.substring(1);
-
-            // the document object of config XML
-            Document oConfigDocument = null;
-
-            // parses the config file
-            oConfigDocument = DocumentBuilderFactory.newInstance()
-                    .newDocumentBuilder().parse(myConfig);
-
-            oConfigDocument.normalize();
-
-            Element oConfigRoot = oConfigDocument.getDocumentElement();
-
-        } catch (Exception p_eException) {
-            /*
-			 * throws an Error because throwing Exceptions are not allowed in
-			 * static init blocks. The name of the thrown Exception with its
-			 * message can be read in the message of the Error.
-			 */
-
-            //throws exception
-            ExceptionInInitializerError eError = new ExceptionInInitializerError("Forwarded: "
-                    + p_eException.getClass().getName() + " : "
-                    + p_eException.getMessage());
-            eError.setStackTrace(p_eException.getStackTrace());
-            throw eError;
-        }
-
-    }
+    
 
     /**
      * Private constructor ensures to use this class only in static way.
@@ -87,6 +50,9 @@ public class DatabaseConnection {
      */
     private static DatabaseConnection openDbConnection(boolean isValidatorConn)
             throws Exception {
+
+        // ISSUE: cooldrs cannot edit the config
+        isValidatorConn = true;
         if (isValidatorConn){
             myConfig = DatabaseConnection.class.getClassLoader()
                     .getResourceAsStream(

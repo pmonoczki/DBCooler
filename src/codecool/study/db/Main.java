@@ -25,14 +25,14 @@ public class Main {
         for(Option o: p.Parse(args)){
 
             if (o.flag.equals( "-f")){
-                aFileList.add(o.opt);
+                if (o.opt.endsWith(".sql"))
+                    aFileList.add(o.opt);
             }
             if (o.flag.equals( "-d")){
                 setFilesForFolder(new File(o.opt));
             }
 
             if (o.flag.equals( "-l")){
-                if (o.opt.endsWith(".sql"))
                     myLimit = Integer.parseInt( o.opt);
             }
         }

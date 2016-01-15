@@ -33,6 +33,8 @@ class QueryExecutor {
         } catch (Exception e) {
 
             System.out.println("Not runnable script");
+            System.out.println(e.getMessage());
+            System.out.println("TAKE CARE OF THE TABLE AND COLUMNS ARE CASE SENSITIVE!!!");
             System.out.println("Error in file: " + aQuery.myFileName);
             System.out.println("Error at script: " + aQuery.myQueryList.get(aScriptNum));
         }
